@@ -12,7 +12,8 @@ this repo fork from original weeman is recreate to run in python3, i try this on
 # Requirements
 
 * Python 3+
-``use pip install -r requirements.txt``
+* Use:
+``pip install -r requirements.txt``
 
 # Platforms
 
