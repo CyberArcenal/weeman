@@ -113,8 +113,8 @@ def shell():
     while True:
         try:
             # for Re-complete
-            complete(array)
-            an = raw_input("weeman > ") or "help"
+            #complete(array)
+            an = input("weeman > ") or "help"
             prompt = an.split()
             if not prompt:
               continue

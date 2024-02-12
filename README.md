@@ -3,15 +3,20 @@
 This is a copy of the original https://github.com/Hypsurus/weeman repository because the complete account was removed. All credits goes to Hypsurus and the constributers of this project.
 
 HTTP server for phishing in python.
-Version 1.7.1 is the last and latest version for weeman.
+Version 2.0.0 recreate to run in python3 this is beta version
+
+# New Weeman for python3
+
+this repo fork from original weeman is recreate to run in python3, i try this on windows and it's works for me this is first work for translating weeman in python3 some bug is needed to remove.
 
 # Requirements
 
-* Python 2.7
+* Python 3+
 
 # Platforms
 
 * Linux
+* Win
 * Mac
 
 # Copying

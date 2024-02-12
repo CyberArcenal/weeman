@@ -45,8 +45,8 @@ def tests_platform():
         printt(3, "If \'Weeman\' runs sucsessfuly on your platform %s\nPlease let me (@Hypsurus) know!" %sys.platform)
 
 def main():
-    tests_pyver()
-    tests_platform()
+    #tests_pyver()
+    #tests_platform()
     parser = optparse.OptionParser()
     parser.add_option("-q", "--quiet", dest="quiet_mode_opt", action="store_true", default=False, help="Runs without displaying the banner.")
     parser.add_option("-p", "--profile", dest="profile", help="Load weeman profile.")

@@ -8,7 +8,7 @@
 # See 'LICENSE' file for copying
 #
 
-import readline
+#import readline
 
 array = ["set", "show",
          "help", "port",
